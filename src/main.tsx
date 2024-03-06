@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import '@fontsource/roboto';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import '@fontsource/roboto/900.css';
 import { BrowserRouter } from 'react-router-dom';
 
 const colors = {
@@ -30,7 +34,14 @@ const colors = {
   },
 };
 
-const theme = extendTheme({ colors });
+const fonts = {
+  fonts: {
+    heading: `'Roboto', sans-serif`,
+    body: `'Roboto', sans-serif`,
+  },
+};
+
+const theme = extendTheme({ colors, fonts });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
