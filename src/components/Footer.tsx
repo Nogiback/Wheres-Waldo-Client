@@ -42,10 +42,10 @@ const SocialButton = ({
   );
 };
 
-export default function SmallWithSocial() {
+export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
+      bg={useColorModeValue('blue.100', 'red.800')}
       color={useColorModeValue('gray.700', 'gray.200')}
       position='fixed'
       bottom='0'
@@ -55,7 +55,7 @@ export default function SmallWithSocial() {
         as={Stack}
         maxW={'6xl'}
         py={4}
-        direction={{ base: 'column', md: 'row' }}
+        direction='row'
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}
