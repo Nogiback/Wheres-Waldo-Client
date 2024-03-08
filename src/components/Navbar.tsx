@@ -7,12 +7,16 @@ import {
   Image,
   useColorMode,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import InfoModal from './InfoModal';
+import { MoonIcon, SunIcon, InfoIcon } from '@chakra-ui/icons';
 import WaldoSVG from '../assets/waldo.svg';
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Box bg={useColorModeValue('blue.100', 'red.800')} px={4} py={2}>
@@ -24,17 +28,24 @@ export default function Nav() {
             </Text>
           </Flex>
           <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
+            <Stack direction={'row'} spacing={2}>
               <Button
                 onClick={toggleColorMode}
                 bg={useColorModeValue('blue.200', 'red.700')}
               >
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
+              <Button
+                bg={useColorModeValue('blue.200', 'red.700')}
+                onClick={onOpen}
+              >
+                <InfoIcon />
+              </Button>
             </Stack>
           </Flex>
         </Flex>
       </Box>
+      <InfoModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 }

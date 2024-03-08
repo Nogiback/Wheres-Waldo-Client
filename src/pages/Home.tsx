@@ -6,8 +6,8 @@ import SpaceLevel from '../assets/WaldoSpace.jpg';
 
 export default function Home() {
   return (
-    <Container maxW='1600px' p={{ base: 5, md: 10 }} m='auto'>
-      <SimpleGrid columns={[1, 2, 3]} spacing='auto'>
+    <Container maxW='1600px' p={{ base: 5, md: 10 }}>
+      <SimpleGrid columns={[1, 2, 3]} minChildWidth='300px' gap='8' mb='72px'>
         <LevelCard image={BeachLevel} name={'Beach'} />
         <LevelCard image={SkiLevel} name={'Ski Level'} />
         <LevelCard image={SpaceLevel} name={'Space'} />
