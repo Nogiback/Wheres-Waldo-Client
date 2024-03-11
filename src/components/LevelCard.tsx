@@ -6,6 +6,7 @@ import {
   Button,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 type Props = {
   image: string;
@@ -40,8 +41,10 @@ export default function LevelCard({ image, name }: Props) {
           direction={{ base: 'column', sm: 'row' }}
           spacing={{ base: 2, sm: 0 }}
         >
-          <Button variant='outline'>Leaderboards</Button>
-          <Button colorScheme='red' variant='solid'>
+          <Button as={Link} to={''} variant='outline'>
+            Leaderboards
+          </Button>
+          <Button as={Link} to={''} colorScheme='red' variant='solid'>
             Play
           </Button>
         </Stack>
