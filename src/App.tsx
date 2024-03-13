@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <Box h='100vh'>
+    <Box h='100dvh'>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
