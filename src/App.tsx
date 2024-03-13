@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/level/:levelID' element={<Level />} />
-        <Route path='/level/:levelID/leaderboard' element={<Leaderboard />} />
+        <Route path='/level/:levelID/scores' element={<Leaderboard />} />
         <Route path='/404' element={<NotFound />} />
         <Route path='*' element={<Navigate to='/404' replace />} />
       </Routes>

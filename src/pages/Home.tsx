@@ -1,10 +1,8 @@
-import { Container, SimpleGrid } from '@chakra-ui/react';
+import { Container, SimpleGrid, Text } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { fetchLevels } from '../utils/API';
 import LevelCard from '../components/LevelCard';
-import BeachLevel from '../assets/WaldoBeach.jpg';
-import SkiLevel from '../assets/WaldoSkiHill.jpg';
-import SpaceLevel from '../assets/WaldoSpace.jpg';
+import Loading from '../components/Loading';
 
 type Level = {
   _id: string;
@@ -39,13 +37,15 @@ export default function Home() {
 
   return (
     <Container maxW='1600px' p={{ base: 5, md: 10 }}>
-      {/* Add Loading Section */}
-      {/* Add Error section */}
-      <SimpleGrid columns={[1, 2, 3]} minChildWidth='300px' gap='8' mb='72px'>
-        <LevelCard image={BeachLevel} name={'Beach'} />
-        <LevelCard image={SkiLevel} name={'Ski Hill'} />
-        <LevelCard image={SpaceLevel} name={'Space'} />
-      </SimpleGrid>
+      {isLoading && <Loading message='Loading Levels...' />}
+      {error && <Text>{error}</Text>}
+      {levels && (
+        <SimpleGrid columns={[1, 2, 3]} minChildWidth='300px' gap='8' mb='72px'>
+          {levels.map((level) => {
+            return <LevelCard key={level._id} level={level} />;
+          })}
+        </SimpleGrid>
+      )}
     </Container>
   );
 }

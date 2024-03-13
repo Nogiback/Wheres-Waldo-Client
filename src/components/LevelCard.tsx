@@ -8,12 +8,20 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-type Props = {
-  image: string;
+type Level = {
+  _id: string;
   name: string;
+  characters: object[];
+  dimensions: object;
+  scores: string[];
+  imageURL: string;
 };
 
-export default function LevelCard({ image, name }: Props) {
+type Props = {
+  level: Level;
+};
+
+export default function LevelCard({ level }: Props) {
   return (
     <Box
       borderWidth='1px'
@@ -23,7 +31,7 @@ export default function LevelCard({ image, name }: Props) {
       boxShadow='xl'
       bg={useColorModeValue('white', 'gray.800')}
     >
-      <Image src={image} objectFit='cover' w='100%' />
+      <Image src={level.imageURL} objectFit='cover' w='100%' />
       <Box p={{ base: 3, sm: 5 }}>
         <Box mb={6}>
           <Heading
@@ -33,7 +41,7 @@ export default function LevelCard({ image, name }: Props) {
             mb={2}
             textAlign={'center'}
           >
-            {name}
+            {level.name}
           </Heading>
         </Box>
         <Stack
@@ -41,10 +49,15 @@ export default function LevelCard({ image, name }: Props) {
           direction={{ base: 'column', sm: 'row' }}
           spacing={{ base: 2, sm: 0 }}
         >
-          <Button as={Link} to={''} variant='outline'>
+          <Button as={Link} to={`/level/${level._id}/scores`} variant='outline'>
             Leaderboards
           </Button>
-          <Button as={Link} to={''} colorScheme='red' variant='solid'>
+          <Button
+            as={Link}
+            to={`/level/${level._id}`}
+            colorScheme='red'
+            variant='solid'
+          >
             Play
           </Button>
         </Stack>
