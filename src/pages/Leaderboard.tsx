@@ -16,6 +16,7 @@ import { fetchLevelScores } from '../utils/API';
 import Loading from '../components/Loading';
 
 type Score = {
+  _id: string;
   username: string;
   score: number;
   level: {
@@ -72,7 +73,7 @@ export default function Leaderboard() {
             <Tbody>
               {scores?.map((score, index) => {
                 return (
-                  <Tr>
+                  <Tr key={score._id}>
                     <Td>{index + 1}</Td>
                     <Td>{score.level.name}</Td>
                     <Td>{score.username}</Td>
