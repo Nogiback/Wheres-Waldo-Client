@@ -19,21 +19,20 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    async function getLevels() {
+      try {
+        const allLevels = await fetchLevels();
+        setLevels(allLevels);
+        setError(null);
+      } catch (err) {
+        if (err instanceof Error) setError(err.message);
+        setLevels(null);
+      } finally {
+        setIsLoading(false);
+      }
+    }
     getLevels();
   }, []);
-
-  async function getLevels() {
-    try {
-      const allLevels = await fetchLevels();
-      setLevels(allLevels);
-      setError(null);
-    } catch (err) {
-      if (err instanceof Error) setError(err.message);
-      setLevels(null);
-    } finally {
-      setIsLoading(false);
-    }
-  }
 
   return (
     <Container maxW='1600px' p={{ base: 5, md: 10 }}>
