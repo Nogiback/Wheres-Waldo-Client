@@ -12,6 +12,7 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   isOpen: boolean;
@@ -30,6 +31,8 @@ export default function HighScoreModal({
   gametime,
   submitScore,
 }: Props) {
+  const nav = useNavigate();
+
   function handleRestart() {
     window.location.reload();
   }
@@ -66,6 +69,16 @@ export default function HighScoreModal({
               />
             </FormControl>
             <HStack alignItems={'center'} justifyContent={'center'} mb='6'>
+              <Button
+                bg={useColorModeValue('red.700', 'blue.800')}
+                color={'white'}
+                _hover={{
+                  bg: 'blue.300',
+                }}
+                onClick={() => nav('/')}
+              >
+                Home
+              </Button>
               <Button
                 bg={useColorModeValue('red.700', 'blue.800')}
                 color={'white'}

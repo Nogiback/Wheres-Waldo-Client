@@ -70,9 +70,10 @@ export default function CharacterSelectionBox({
       <Box
         width='60px'
         height='60px'
-        borderColor='red.600'
+        borderColor='red.700'
         borderWidth='5px'
         borderRadius='full'
+        boxShadow={'0 0 50px 1px red'}
       ></Box>
       <Flex
         direction='column'

@@ -1,4 +1,11 @@
-import { Container, Image, Text, Box, useDisclosure } from '@chakra-ui/react';
+import {
+  Container,
+  Image,
+  Text,
+  Box,
+  useDisclosure,
+  useToast,
+} from '@chakra-ui/react';
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchGametime, fetchLevel, addLevelScore } from '../utils/API';
@@ -51,6 +58,7 @@ export default function Level() {
   const { levelID } = useParams() as { levelID: string };
   const imageRef = useRef<HTMLImageElement | null>(null);
   const nav = useNavigate();
+  const toast = useToast();
   const targetStyle = {
     left: `${targetBoundaries.minX}px`,
     top: `${targetBoundaries.minY}px`,
@@ -79,7 +87,6 @@ export default function Level() {
     async function getGametime() {
       try {
         const res = await fetchGametime(levelID);
-        console.log(res);
         setGametime(res.gametime);
       } catch (err) {
         if (err instanceof Error) setError(err.message);
@@ -159,7 +166,21 @@ export default function Level() {
             locationY: targetPosition.y,
           },
         ]);
+        toast({
+          title: 'Success!',
+          description: `You found ${selectedCharacter}!`,
+          status: 'success',
+          duration: 6000,
+          isClosable: true,
+        });
       } else {
+        toast({
+          title: 'Nope!',
+          description: `That is not where ${selectedCharacter} is!`,
+          status: 'error',
+          duration: 6000,
+          isClosable: true,
+        });
         return;
       }
     }
@@ -207,10 +228,11 @@ export default function Level() {
           <Box
             width='60px'
             height='60px'
-            borderColor='green.400'
+            borderColor='#0ADD08'
             borderWidth='5px'
             borderRadius='full'
             position='absolute'
+            boxShadow={'0 0 50px 2px #0ADD08'}
             key={character.character}
             style={{
               left: `${character.locationX - 30}px`,
