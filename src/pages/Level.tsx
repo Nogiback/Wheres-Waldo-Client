@@ -149,16 +149,19 @@ export default function Level() {
     if (isAlreadyFound) {
       return;
     } else {
-      /* Calculating the scale factor of the current displayed image and the dimensions of the original image in database */
+      // Calculating the scale factors of the current displayed image
       const widthScaleFactor =
         currentDimensions.width / level!.dimensions.width;
       const heightScaleFactor =
         currentDimensions.height / level!.dimensions.height;
+
+      // Calculating the character's X & Y location based on the scale factor
       const normalizedCharacterX =
         characterDetails!.locationX * widthScaleFactor;
       const normalizedCharacterY =
         characterDetails!.locationY * heightScaleFactor;
 
+      // Checking if target boundaries include the character's X & Y location
       if (
         targetBoundaries.minX < normalizedCharacterX &&
         targetBoundaries.maxX > normalizedCharacterX &&
@@ -193,7 +196,7 @@ export default function Level() {
     }
   }
 
-  // function to submit high score to the API
+  // Function to submit high score to the API
   async function submitScore(e: React.FormEvent) {
     e.preventDefault();
     const scoreDetails = {
