@@ -15,7 +15,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'no-undef': 'warn',
     'react/prop-types': 'off',
     'react-hooks/rules-of-hooks': 'warn',
