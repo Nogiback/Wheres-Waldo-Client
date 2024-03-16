@@ -64,6 +64,7 @@ export default function Level() {
     top: `${targetBoundaries.minY}px`,
   };
 
+  // UseEffect for fetching the level upon page load
   useEffect(() => {
     async function getLevel() {
       try {
@@ -84,6 +85,7 @@ export default function Level() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // UseEffect for fetching the gametime from the API once game is completed
   useEffect(() => {
     async function getGametime() {
       try {
@@ -105,6 +107,7 @@ export default function Level() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foundCharacters]);
 
+  // UseEffect for updating the remaining characters upon successful selection
   useEffect(() => {
     const remainingChars =
       characters &&
@@ -116,6 +119,7 @@ export default function Level() {
     setRemainingCharacters(remainingChars);
   }, [characters, foundCharacters]);
 
+  // Handler for user clicking on image
   function handleLevelClick(e: React.MouseEvent) {
     const image = imageRef.current;
     const boundingBox = e.currentTarget.getBoundingClientRect();
@@ -132,6 +136,7 @@ export default function Level() {
     setShowTarget(true);
   }
 
+  // Handler for user selecting a character upon clicking on image
   function handleCharacterSelection(selectedCharacter: string) {
     setShowTarget(false);
     const characterDetails = characters?.find(
@@ -144,6 +149,7 @@ export default function Level() {
     if (isAlreadyFound) {
       return;
     } else {
+      /* Calculating the scale factor of the current displayed image and the dimensions of the original image in database */
       const widthScaleFactor =
         currentDimensions.width / level!.dimensions.width;
       const heightScaleFactor =
@@ -187,6 +193,7 @@ export default function Level() {
     }
   }
 
+  // function to submit high score to the API
   async function submitScore(e: React.FormEvent) {
     e.preventDefault();
     const scoreDetails = {
