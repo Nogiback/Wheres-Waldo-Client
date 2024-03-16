@@ -45,9 +45,9 @@ export default function InfoModal({ isOpen, onClose }: Props) {
         </ModalBody>
         <ModalBody>
           <Flex alignContent='center' justifyContent='space-around'>
-            {characters.map((character) => {
+            {characters.map((character, index) => {
               return (
-                <VStack>
+                <VStack key={index}>
                   <Image src={character.image} h='100px' />
                   <Box>{character.name}</Box>
                 </VStack>

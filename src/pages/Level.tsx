@@ -71,6 +71,7 @@ export default function Level() {
         setLevel(levelData);
         setCharacters(levelData.characters);
         setRemainingCharacters(levelData.characters);
+        setGametime(0);
         setError(null);
       } catch (err) {
         if (err instanceof Error) setError(err.message);
@@ -202,6 +203,7 @@ export default function Level() {
       if (err instanceof Error) setError(err.message);
       setLevel(null);
     }
+    setGametime(0);
     onClose();
     nav(`/level/${levelID}/scores`);
   }
