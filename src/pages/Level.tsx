@@ -206,8 +206,7 @@ export default function Level() {
     };
 
     try {
-      const res = await addLevelScore(levelID, scoreDetails);
-      console.log(res);
+      await addLevelScore(levelID, scoreDetails);
       setError(null);
     } catch (err) {
       if (err instanceof Error) setError(err.message);
